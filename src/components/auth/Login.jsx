@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { auth } from "../../utils/firebase.config";
 import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
+  signInWithEmailAndPassword, signInWithPopup,
+GoogleAuthProvider,
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
