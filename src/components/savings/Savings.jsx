@@ -33,6 +33,7 @@ const Savings = () => {
     });
   };
 
+  
   useEffect(() => {
     setSavings(income - expenses);
   }, [income, expenses]);
