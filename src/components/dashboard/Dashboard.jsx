@@ -67,7 +67,7 @@ const Dashboard = () => {
         totalIncome += childSnapshot.val().amount;
       });
       setIncome(totalIncome);
-    }); 
+    });
 
     onValue(expensesRef, (snapshot) => {
       let totalExpenses = 0;
@@ -75,21 +75,27 @@ const Dashboard = () => {
       snapshot.forEach((childSnapshot) => {
         const data = childSnapshot.val();
         totalExpenses += Number(data.amount);
-        categoryCount[data.category] = (categoryCount[data.category] || 0) + data.amount;
+        categoryCount[data.category] =
+          (categoryCount[data.category] || 0) + data.amount;
       });
       setExpenses(totalExpenses);
       setExpenseCategories(categoryCount);
 
       const categories = Object.keys(categoryCount);
-      const maxFreqCategory = categories.reduce((a, b) => (categoryCount[a] > categoryCount[b] ? a : b), "");
-      const maxExpensiveCategory = categories.reduce((a, b) => (categoryCount[a] >= categoryCount[b] ? a : b), "");
+      const maxFreqCategory = categories.reduce(
+        (a, b) => (categoryCount[a] > categoryCount[b] ? a : b),
+        ""
+      );
+      const maxExpensiveCategory = categories.reduce(
+        (a, b) => (categoryCount[a] >= categoryCount[b] ? a : b),
+        ""
+      );
 
       setFrequentCategory(maxFreqCategory);
       setExpensiveCategory(maxExpensiveCategory);
     });
   };
 
- 
   useEffect(() => {
     setSavings(income - expenses);
   }, [income, expenses]);
@@ -100,7 +106,13 @@ const Dashboard = () => {
       {
         label: "Expenses by Category",
         data: Object.values(expenseCategories),
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+        backgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#4BC0C0",
+          "#9966FF",
+        ],
       },
     ],
   };
@@ -135,30 +147,39 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="w-full">
-            {expenseCategories && <Bar data={barData} /> }
+            {expenseCategories && <Bar data={barData} />}
           </div>
         </div>
         <div className="flex flex-col items-center gap-5 ">
           <h1 className="font-bold text-xl">Expense Analysis</h1>
           <div className="flex gap-5">
-          <div className="bg-yellow-600 text-white p-2 rounded-lg flex items-center gap-2 capitalize">
-            <p>Most Frequent Expense Category:</p>
-            <p className="text-xl">{frequentCategory}</p>
+            <div className="bg-yellow-600 text-white p-2 rounded-lg flex items-center gap-2 capitalize">
+              <p>Most Frequent Expense Category:</p>
+              <p className="text-xl">{frequentCategory}</p>
+            </div>
+            <div className="bg-yellow-600 text-white p-2 rounded-lg flex items-center gap-2 capitalize">
+              <p>Most Expensive Category:</p>
+              <p className="text-xl">{expensiveCategory}</p>
+            </div>
           </div>
-          <div className="bg-yellow-600 text-white p-2 rounded-lg flex items-center gap-2 capitalize">
-            <p>Most Expensive Category:</p>
-            <p className="text-xl">{expensiveCategory}</p>
-          </div>
-          </div>
-         
+
           <div className="flex gap-4 mt-4">
-            <button onClick={() => navigate("/income")} className="bg-blue-500 text-white py-2 px-4 rounded">
+            <button
+              onClick={() => navigate("/income")}
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+            >
               Income
             </button>
-            <button onClick={() => navigate("/expenses")} className="bg-red-500 text-white py-2 px-4 rounded">
+            <button
+              onClick={() => navigate("/expenses")}
+              className="bg-red-500 text-white py-2 px-4 rounded"
+            >
               Expenses
             </button>
-            <button onClick={() => navigate("/savings")} className="bg-green-500 text-white py-2 px-4 rounded">
+            <button
+              onClick={() => navigate("/savings")}
+              className="bg-green-500 text-white py-2 px-4 rounded"
+            >
               Savings
             </button>
           </div>
