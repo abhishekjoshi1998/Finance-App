@@ -8,7 +8,7 @@ const Landing = () => {
       <div className="grid grid-cols-2 gap-10 items-center text-center pt-36 z-10 relative">
         <div className="text-center space-y-10">
             <h2 className="text-7xl font-bold">Finance App</h2>
-            <p className="text-gray-500 text-xl">Manage your finential growth in a smart way </p>
+            <p className="text-gray-500 text-xl">Manage your finential growth in a smart way... </p>
         </div>
 
         <div className="flex justify-center items-center">
