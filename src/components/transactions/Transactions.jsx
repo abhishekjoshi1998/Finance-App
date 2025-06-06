@@ -47,8 +47,10 @@ const Transactions = () => {
         ? `incomes/${userId}/${id}`
         : `expenses/${userId}/${id}`;
     remove(ref(db, path));
-    toast.success(`${type === "Income" ? "Income" : "Expense"}Transaction Deleted`);
-    fetchTransactions(userId)
+    toast.success(
+      `${type === "Income" ? "Income" : "Expense"}Transaction Deleted`
+    );
+    fetchTransactions(userId);
   };
 
   const filteredTransactions = transactions.filter((t) =>
@@ -73,7 +75,7 @@ const Transactions = () => {
         </div>
       </nav>
 
-      <div className="overflow-scroll w-full"> 
+      <div className="overflow-scroll w-full">
         <table className="w-full md:px-5">
           <thead className="border border-black">
             <tr className="flex justify-between">
@@ -106,20 +108,21 @@ const Transactions = () => {
                   {t.category ? t.category : "Null"}
                 </td>
                 <td className="border-r border-black w-full text-center py-2">
-                {t.date}
+                  {t.date}
                 </td>
                 <td className="border-r border-black w-full text-center py-2 flex items-center justify-center gap-2">
-                <button onClick={() => deleteTransaction(t.type, t.id)} className="px-2 py-1 rounded-lg bg-red-500">
-                  Delete
-                </button>
+                  <button
+                    onClick={() => deleteTransaction(t.type, t.id)}
+                    className="px-2 py-1 rounded-lg bg-red-500"
+                  >
+                    Delete
+                  </button>
                 </td>
-               
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      
     </div>
   );
 };
